@@ -1,5 +1,6 @@
 class EnhancedScoreboard extends SRScoreBoard;
 
+var string HSKillsText, SCKillsText, FPKillsText, HDSKillsText;
 
 simulated event UpdateScoreBoard(Canvas Canvas)
 {
@@ -8,7 +9,7 @@ simulated event UpdateScoreBoard(Canvas Canvas)
 	local KF_StoryPRI StoryPRI;
 	local int i, FontReduction, NetXPos, PlayerCount, HeaderOffsetY, HeadFoot, MessageFoot, PlayerBoxSizeY, BoxSpaceY, NameXPos, BoxTextOffsetY, OwnerOffset, HealthXPos, BoxXPos, KillsXPos, HSKillsXPos, SCKillsXPos, FPKillsXPos, HDSKillsXPos, TitleYPos, BoxWidth, VetXPos, NotShownCount;
 	local float XL,YL;
-	local float deathsXL, KillsXL, HSKillsXL, SCKillsXL, FPKillsXL, HDSKillsXL, NetXL, HealthXL, MaxNamePos, KillWidthX, CashXPos, TimeXPos, PProgressXS, StoryIconXPos;
+	local float deathsXL, KillsXL, HSKillsXL, SCKillsXL, FPKillsXL, HDSKillsXL, NetXL, HealthXL, MaxNamePos, KillWidthX, HSKillWidthX, SCKillWidthX, FPKillWidthX, HDSKillWidthX, CashXPos, TimeXPos, PProgressXS, StoryIconXPos;
 	local Material VeterancyBox,StarBox;
 	local string S;
 	local byte Stars;
@@ -108,11 +109,15 @@ simulated event UpdateScoreBoard(Canvas Canvas)
 	BoxWidth = Canvas.ClipX - 2 * BoxXPos;
 	VetXPos = BoxXPos + 0.0001 * BoxWidth;
 	NameXPos = VetXPos + PlayerBoxSizeY*1.75f;
-	StoryIconXPos = BoxXPos + 0.48 * BoxWidth;
-	KillsXPos = BoxXPos + 0.55 * BoxWidth;
-	CashXPos = BoxXPos + 0.65 * BoxWidth;
-	HealthXpos = BoxXPos + 0.75 * BoxWidth;
-	TimeXPos = BoxXPos + 0.87 * BoxWidth;
+	StoryIconXPos = BoxXPos + 0.25 * BoxWidth;
+	HSKillsXPos = BoxXPos + 0.40 * BoxWidth;
+	SCKillsXPos = BoxXPos + 0.45 * BoxWidth;
+	FPKillsXPos = BoxXPos + 0.50 * BoxWidth;
+	HDSKillsXPos = BoxXPos + 0.55 * BoxWidth;
+	KillsXPos = BoxXPos + 0.60 * BoxWidth;
+	CashXPos = BoxXPos + 0.7 * BoxWidth;
+	HealthXpos = BoxXPos + 0.8 * BoxWidth;
+	TimeXPos = BoxXPos + 0.9 * BoxWidth;
 	NetXPos = BoxXPos + 0.996 * BoxWidth;
 	PProgressXS = BoxWidth * 0.1f;
 
@@ -139,6 +144,10 @@ simulated event UpdateScoreBoard(Canvas Canvas)
 	Canvas.TextSize(HealthText, HealthXL, YL);
 	Canvas.TextSize(DeathsText, DeathsXL, YL);
 	Canvas.TextSize(KillsText, KillsXL, YL);
+	Canvas.TextSize(HSKillsText, HSKillsXL, YL);
+	Canvas.TextSize(SCKillsText, SCKillsXL, YL);
+	Canvas.TextSize(FPKillsText, FPKillsXL, YL);
+	// Canvas.TextSize(HDSKillsText, HDSKillsXL, YL);
 	Canvas.TextSize(NetText, NetXL, YL);
 
 	Canvas.DrawColor = HUDClass.default.WhiteColor;
@@ -147,6 +156,18 @@ simulated event UpdateScoreBoard(Canvas Canvas)
 
 	Canvas.SetPos(KillsXPos - 0.5 * KillsXL, TitleYPos);
 	Canvas.DrawTextClipped(KillsText);
+
+    Canvas.SetPos(HSKillsXPos - 0.5 * HSKillsXL, TitleYPos);
+	Canvas.DrawTextClipped(HSKillsText);
+
+    Canvas.SetPos(SCKillsXPos - 0.5 * SCKillsXL, TitleYPos);
+	Canvas.DrawTextClipped(SCKillsText);
+
+    Canvas.SetPos(FPKillsXPos - 0.5 * FPKillsXL, TitleYPos);
+	Canvas.DrawTextClipped(FPKillsText);
+
+    /*Canvas.SetPos(HDSKillsXPos - 0.5 * HDSKillsXL, TitleYPos);
+	Canvas.DrawTextClipped(HDSKillsText);*/
 
 	Canvas.TextSize(PointsText, XL, YL);
 	Canvas.SetPos(CashXPos - 0.5 * XL, TitleYPos);
@@ -252,21 +273,38 @@ simulated event UpdateScoreBoard(Canvas Canvas)
 			}
 			Canvas.DrawColor = HUDClass.default.WhiteColor;
 
-			// Draw perk progress
+			// Wtf is this? Useless in a scoreboard
+            /*// Draw perk progress
 			if( !PRI.bBot && KFPRI.ThreeSecondScore>=0 )
 			{
 				YL = float(KFPRI.ThreeSecondScore) / 10000.f;
 				DrawProgressBar(Canvas,KillsXPos-PProgressXS*1.5,HeaderOffsetY + (PlayerBoxSizeY + BoxSpaceY) * i + PlayerBoxSizeY*0.4,PProgressXS,PlayerBoxSizeY*0.2,FClamp(YL,0.f,1.f));
 				Canvas.DrawColor.A = 255;
-			}
+			}*/
 		}
 
-		// draw kills
+		// Draw All Kills
 		if( KFPRI!=None )
 		{
 			Canvas.TextSize(KFPRI.Kills, KillWidthX, YL);
 			Canvas.SetPos(KillsXPos - 0.5 * KillWidthX, (PlayerBoxSizeY + BoxSpaceY) * i + BoxTextOffsetY);
 			Canvas.DrawTextClipped(KFPRI.Kills);
+
+            Canvas.TextSize(ESPlayerReplicationInfo(KFPRI).HSKills, HSKillWidthX, YL);
+			Canvas.SetPos(HSKillsXPos - 0.5 * HSKillWidthX, (PlayerBoxSizeY + BoxSpaceY) * i + BoxTextOffsetY);
+			Canvas.DrawTextClipped(ESPlayerReplicationInfo(KFPRI).HSKills);
+
+            Canvas.TextSize(ESPlayerReplicationInfo(KFPRI).SCKills, SCKillWidthX, YL);
+			Canvas.SetPos(SCKillsXPos - 0.5 * SCKillWidthX, (PlayerBoxSizeY + BoxSpaceY) * i + BoxTextOffsetY);
+			Canvas.DrawTextClipped(ESPlayerReplicationInfo(KFPRI).SCKills);
+
+            Canvas.TextSize(ESPlayerReplicationInfo(KFPRI).FPKills, FPKillWidthX, YL);
+			Canvas.SetPos(FPKillsXPos - 0.5 * FPKillWidthX, (PlayerBoxSizeY + BoxSpaceY) * i + BoxTextOffsetY);
+			Canvas.DrawTextClipped(ESPlayerReplicationInfo(KFPRI).FPKills);
+
+            /*Canvas.TextSize(ESPlayerReplicationInfo(KFPRI).HDSKills, HDSKillWidthX, YL);
+			Canvas.SetPos(KillsXPos - 0.5 * HDSKillWidthX, (PlayerBoxSizeY + BoxSpaceY) * i + BoxTextOffsetY);
+			Canvas.DrawTextClipped(ESPlayerReplicationInfo(KFPRI).HDSKills);*/
 		}
 
 		// draw cash
@@ -316,4 +354,12 @@ simulated event UpdateScoreBoard(Canvas Canvas)
 		Canvas.SetPos(HealthXpos - 0.5 * XL, (PlayerBoxSizeY + BoxSpaceY) * i + BoxTextOffsetY);
 		Canvas.DrawTextClipped(S);
 	}
+}
+
+defaultproperties
+{
+    HSKillsText = "HS"
+    SCKillsText = "SC"
+    FPKillsText = "FP"
+    HDSKillsText = "HDS"
 }

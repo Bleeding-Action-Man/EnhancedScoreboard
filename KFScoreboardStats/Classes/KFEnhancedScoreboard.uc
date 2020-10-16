@@ -3,12 +3,12 @@
 
 class KFEnhancedScoreboard extends Mutator;
 
-var ESGameRules FPPGR;
+var ESGameRules ESGR;
 
 function PostBeginPlay()
 {
     Level.Game.ScoreBoardType = "KFEnhancedScoreboard.EnhancedScoreboard";
-    FPPGR = Spawn(class'ESGameRules');
+    ESGR = Spawn(class'ESGameRules');
 }
 
 function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
@@ -16,7 +16,6 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
     if(PlayerController(Other) != none)
     {
         PlayerController(Other).PlayerReplicationInfoClass = class'ESPlayerReplicationInfo';
-        AddHandler(PlayerController(Other));
     }
     return true;
 }
