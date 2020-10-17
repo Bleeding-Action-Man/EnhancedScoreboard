@@ -1,0 +1,44 @@
+A small addition on top of the ServerPerks' Scoreboard to show:
+
+- Headshots
+- Husks
+- Scrakes
+- Fleshpounds
+
+kills per player
+
+[H1][b][u]Notes[/u][/b][/H1]
+
+For Players:
+
+- This has only been tested on ServerPerks
+- This REQUIRES ServerPerks
+
+For Devs:
+
+- This might work on your ScoreBoards if they are extending SP ScoreBoard
+
+[H1][b][u]Number Of Files[/u][/b][/H1]
+
+- 2
+
+[H1][b][u]File Names[/u][/b][/H1]
+
+- \System\KFEnhancedScoreboard.u
+- \System\KFEnhancedScoreboard.ucl
+
+[H1][b][u]Usage[/u][/b][/H1]
+
+1- Subscribe or download manually (recommended)
+2- Launch the game and wait to see 'Completed'
+3- Restart the game and you can see the mutators in your list
+
+[H1][b][u]Class Names[/u][/b][/H1]
+
+- KFEnhancedScoreboard.KFEnhancedScoreboard
+
+[H1][b][u]Manual Download Links (Recommended)[/u][/b][/H1]
+
+You can find it under 'Not Whitelisted' folder named 'KF-EnhancedScoreboard-v1.0'
+
+MEGA Link: https://mega DOT nz/folder/YDoEmKiC#s6FGAtgh40-TvB4bHsLaMQ
