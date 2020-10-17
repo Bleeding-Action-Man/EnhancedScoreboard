@@ -166,11 +166,11 @@ simulated event UpdateScoreBoard(Canvas Canvas)
     Canvas.SetPos(SCKillsXPos - 0.5 * SCKillsXL, TitleYPos);
 	Canvas.DrawTextClipped(SCKillsText);
 
-	Canvas.DrawColor = HUDClass.default.BlueColor;
+	Canvas.DrawColor = HUDClass.default.GoldColor;
     Canvas.SetPos(FPKillsXPos - 0.5 * FPKillsXL, TitleYPos);
 	Canvas.DrawTextClipped(FPKillsText);
 
-	Canvas.DrawColor = HUDClass.default.GoldColor;
+	Canvas.DrawColor = HUDClass.default.CyanColor;
     Canvas.SetPos(HDSKillsXPos - 0.5 * HDSKillsXL, TitleYPos);
 	Canvas.DrawTextClipped(HDSKillsText);
 
@@ -306,12 +306,12 @@ simulated event UpdateScoreBoard(Canvas Canvas)
 			Canvas.SetPos(SCKillsXPos - 0.5 * SCKillWidthX, (PlayerBoxSizeY + BoxSpaceY) * i + BoxTextOffsetY);
 			Canvas.DrawTextClipped(ESPlayerReplicationInfo(KFPRI).SCKills);
 
-			Canvas.DrawColor = HUDClass.default.BlueColor;
+			Canvas.DrawColor = HUDClass.default.GoldColor;
             Canvas.TextSize(ESPlayerReplicationInfo(KFPRI).FPKills, FPKillWidthX, YL);
 			Canvas.SetPos(FPKillsXPos - 0.5 * FPKillWidthX, (PlayerBoxSizeY + BoxSpaceY) * i + BoxTextOffsetY);
 			Canvas.DrawTextClipped(ESPlayerReplicationInfo(KFPRI).FPKills);
 
-			Canvas.DrawColor = HUDClass.default.GoldColor;
+			Canvas.DrawColor = HUDClass.default.CyanColor;
             Canvas.TextSize(ESPlayerReplicationInfo(KFPRI).HDSKills, HDSKillWidthX, YL);
 			Canvas.SetPos(HDSKillsXPos - 0.5 * HDSKillWidthX, (PlayerBoxSizeY + BoxSpaceY) * i + BoxTextOffsetY);
 			Canvas.DrawTextClipped(ESPlayerReplicationInfo(KFPRI).HDSKills);

@@ -24,6 +24,6 @@ defaultproperties
 {
     bAddToServerPackages=true
     GroupName="KF-EnhancedScoreboard"
-    FriendlyName="EnhancedScoreboard - v1.0"
+    FriendlyName="EnhancedScoreboard - v1.1"
     Description="Based on ServerPerks Scoreboard, this is an enhanced version with Headshots, Husks, Scrakes & Fleshpound kills counters!; Modified by Vel-San"
 }
