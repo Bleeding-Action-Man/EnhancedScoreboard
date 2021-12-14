@@ -1,6 +1,6 @@
 class EnhancedScoreboard extends SRScoreBoard;
 
-var string HSKillsText, SCKillsText, FPKillsText, HDSKillsText;
+var localized string HSKillsText, SCKillsText, FPKillsText, HDSKillsText;
 var color Orange, Teal;
 
 simulated event UpdateScoreBoard(Canvas Canvas)
